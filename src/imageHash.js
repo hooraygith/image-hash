@@ -1,10 +1,10 @@
-import fs from 'fs';
-import fileType from 'file-type';
-import jpeg from 'jpeg-js';
-import { PNG } from 'pngjs';
-import request from 'request';
-import blockhash from './block-hash';
-import { URL } from 'url';
+const fs = require('fs');
+const fileType = require('file-type');
+const jpeg = require('jpeg-js');
+const { PNG } = require('pngjs');
+const request = require('request');
+const blockhash = require('./block-hash.js');
+const { URL } = require('url');
 
 const processPNG = (data, bits, method, cb) => {
   try {
@@ -27,7 +27,7 @@ const processJPG = (data, bits, method, cb) => {
 };
 
 // eslint-disable-next-line
-export const imageHash = (oldSrc, bits, method, cb) => {
+module.exports = (oldSrc, bits, method, cb) => {
   const src = oldSrc;
 
   const checkFileType = (name, data) => {
@@ -37,7 +37,7 @@ export const imageHash = (oldSrc, bits, method, cb) => {
       cb(new Error('Mime type not found'));
       return;
     }
-    if (name.lastIndexOf('.') > 0) {
+    if (typeof name === 'string' && name.lastIndexOf('.') > 0) {
       const ext = name
         .split('.')
         .pop()
@@ -87,19 +87,7 @@ export const imageHash = (oldSrc, bits, method, cb) => {
   }
 
   // is src url or file
-  if (typeof src === 'string' && src.indexOf('http') === 0) {
-    // url
-    const req = {
-      url: src,
-      encoding: null,
-    };
-
-    request(req, handleRequest);
-  } else if (typeof src === 'object') {
-    // Request Object
-    src.encoding = null;
-    request(src, handleRequest);
-  } else if (Buffer.isBuffer(src)) {
+  if (Buffer.isBuffer(src)) {
     // file
     handleReadFile(null, src)
   } else {

@@ -185,7 +185,7 @@ const bmvbhash = (data, bits) => {
   return bitsToHexhash(result);
 };
 
-export default (imgData, bits, method) => {
+module.exports = (imgData, bits, method) => {
   let hash;
 
   if (method === 1) {

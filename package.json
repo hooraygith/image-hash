@@ -1,6 +1,6 @@
 {
   "name": "image-hash-2",
-  "version": "3.5.0",
+  "version": "3.5.5",
   "description": "Create a hash from an image",
   "main": "src/imageHash.js",
   "types": "lib/imageHash.d.ts",
@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
