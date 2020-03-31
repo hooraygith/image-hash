@@ -1,8 +1,8 @@
 {
-  "name": "image-hash",
+  "name": "image-hash-2",
   "version": "3.5.0",
   "description": "Create a hash from an image",
-  "main": "lib/imageHash.js",
+  "main": "src/imageHash.js",
   "types": "lib/imageHash.d.ts",
   "scripts": {
     "test": "jest",

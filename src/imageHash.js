@@ -99,6 +99,9 @@ export const imageHash = (oldSrc, bits, method, cb) => {
     // Request Object
     src.encoding = null;
     request(src, handleRequest);
+  } else if (Buffer.isBuffer(src)) {
+    // file
+    handleReadFile(null, src)
   } else {
     // file
     fs.readFile(src, handleReadFile);
