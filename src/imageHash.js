@@ -50,7 +50,6 @@ module.exports = (oldSrc, bits, method, cb) => {
         cb(new Error(`Unrecognized file extension, mime type or mismatch, ext: ${ext} / mime: ${type.mime}`));
       }
     } else {
-      console.warn('No file extension found, attempting mime typing.');
       if (type.mime === 'image/png') {
         processPNG(data, bits, method, cb);
       } else if (type.mime === 'image/jpeg') {
